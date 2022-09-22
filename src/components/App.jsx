@@ -62,14 +62,18 @@ class App extends React.Component {
  
   componentDidUpdate(prevState) {
     if (this.state !== prevState) {
-      localStorage.setItem('phone', JSON.stringify(this.state.contacts));
+      localStorage.setItem('phone-list', JSON.stringify(this.state.contacts));
     }
   }
 
   componentDidMount() {
-    const phoneList = localStorage.getItem('phone');
-    const parsePhoneList = JSON.parse(phoneList);
-    this.setState({contacts: parsePhoneList})
+      const phoneList = localStorage.getItem('phone-list');
+      const parsePhoneList = JSON.parse(phoneList);
+      if(parsePhoneList){
+        this.setState({contacts: parsePhoneList})
+      }
+
+      
   }
 
   render() {
