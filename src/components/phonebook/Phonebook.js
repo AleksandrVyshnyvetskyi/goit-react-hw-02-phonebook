@@ -22,13 +22,6 @@ export class Phonebook extends React.Component {
     });
   };
 
-  reset = () => {
-    this.setState({
-      name: '',
-      number: '',
-    });
-  };
-
   render() {
     const nameId = nanoid(5);
     const numberId = nanoid(5);

@@ -59,6 +59,19 @@ class App extends React.Component {
     return filterContact;
   };
 
+ 
+  componentDidUpdate(prevState) {
+    if (this.state !== prevState) {
+      localStorage.setItem('phone', JSON.stringify(this.state.contacts));
+    }
+  }
+
+  componentDidMount() {
+    const phoneList = localStorage.getItem('phone');
+    const parsePhoneList = JSON.parse(phoneList);
+    this.setState({contacts: parsePhoneList})
+  }
+
   render() {
     return (
       <>
@@ -78,26 +91,5 @@ class App extends React.Component {
     );
   }
 }
-
-//   render() {
-//     return (
-//       <div
-//         style={{
-//           height: '100vh',
-//           display: 'flex',
-//           justifyContent: 'center',
-//           alignItems: 'center',
-//           fontSize: 40,
-//           backgroundColor:  '#0d1e28',
-//           color: '#010101'
-//         }}
-//       >
-//         <div className="box">
-//           <Phonebook />
-//         </div>
-//       </div>
-//     );
-//   }
-// }
 
 export {App}
